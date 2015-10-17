@@ -1,0 +1,254 @@
+@import 'extentions';
+//@import 'variables';
+@import 'fonts';
+@import 'mixins';
+
+$mc:#9b59b6;
+
+*{transition: all ease .35s;}
+
+
+main, body, html{@extend .reset, .con, .full;overflow: hidden;}
+.wrap{@extend .con, .flex;padding: 30px;@include hw(calc(100% - 60px),calc(100% - 60px))}
+*{transition: all ease .35s; color:white;text-shadow:0 2px 5px rgba(0,0,0,.5);font-family: 'open sans', 'source sans pro', arial;font-weight:100;@extend .reset;}
+h1,h2,h3,h4,h5,h6{@include font(source sans pro, 300, 1.15em);text-transform: capitalize;}
+
+main{
+    @include centerBg(url(../assets/images/bg.jpg));
+    .main-wrap{
+        @extend .full, .con, .flex;
+        background-color: rgba(0,0,0,.35);
+        .video{
+            @extend .abCenter;
+            z-index: -10;
+            position: fixed;
+        }
+        .stage{
+            @include hw(85vh,85vw);
+            @extend .con;
+            z-index: 10;
+            flex-wrap: wrap;
+            background-color: rgba(0,0,0,.75);
+            box-shadow:0 2px 10px rgba(0,0,0,1);
+            > * {
+                @extend .ab; 
+                box-sizing: border-box;
+                &:hover{
+                    background-color: rgba(255,255,255,.025);
+                }
+            }
+            $quickBorder: rgba(0,0,0,.5) solid 1px;
+            .present{
+                @include hw(100%, 40%);
+                border-right:$quickBorder;
+                .wrap{
+                    align-content: space-between;
+                    > *{width: 100%; text-align: center;}
+                    h3{
+                        width:100%;
+                        text-align: left;
+                        @include font(oswald, 100, 2.5em);
+                    }
+                    .date{
+                        
+                    }
+                    .graphic{
+                        @extend .centerBg;
+                        height:20%;
+                        background-size: 30%;
+                    }
+                    .temp{
+                        @include font(work sans, 100, 10em);
+                        transform:translateX(2.5%) translateY(15%);
+                        line-height: .5em;
+                        margin-bottom: 75px;
+                        span{
+                            @include font(work sans, 100, .5em);
+                            display: inline-block;
+                            transform: translateY(-65%);
+                        }
+                    }
+                    .hi-lo{
+                        > *{
+                            width:50%;
+                            float: left;
+                            @include font(lato, 300, 1.45em);
+                            box-sizing: border-box;
+                            span{
+                                display: inline-block;
+                            }
+                        }
+                        .hi{border-right:solid white 1px;}
+                    }
+                    .perc, .wind, .hum{
+                        @include font(source sans pro, 100, 1.15em);
+                        text-transform: capitalize;
+                        text-align: left;
+                        display: block;
+                        @extend .con;
+                        border-top:white solid 1px;
+                        padding-top: 25px;
+                        span{
+                            display: inline-block;
+                            float: right;
+                        }
+                    }
+                }
+            }
+            .allday{
+                left:40%;
+                @include hw(50%, 60%);
+                border-bottom:$quickBorder;
+                .wrap{
+                    align-items: flex-start;
+                    h3{
+                        width:100%;
+                        @include font(oswald, 100, 1.75em);
+                    }
+                    .allday-wrap{
+                        @include hw(90%,100%);
+                        overflow: hidden;
+                        .allday-rail{
+                            height:100%;
+                            width:200%;
+                            @extend .con;
+                            .hour{
+                                @include hw(100%,10%);
+                                @extend .flex;
+                                float: left;
+                                box-sizing: border-box;
+                                > *{width:100%;text-align: center;}
+                                .time{
+                                    @include font(open sans, 100, 1.25em);
+                                }
+                                .graphic{
+                                    @extend .centerBg;
+                                    height:25%;
+                                    background-size: 40%;
+                                }
+                                .temp{
+                                    @include font(work sans, 100, 3em);
+                                    margin: 20px 0 40px;
+                                }
+                                .perc{
+                                    @include font(open sans, 100, 1.25em);
+                                    span{
+                                        display: inline-block;
+                                        @include centerBg(url(../assets/images/drip.png));
+                                        @include hw(20px, 20px);
+                                        background-size: 75%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .allday-arrows{
+                        @include hw(30px,100%);
+                        @extend .con, .flex;
+                        justify-content: space-between;
+                        > *{
+                            @include hw(100%,50%);
+                            @extend .con, .flex;
+                            cursor: pointer;
+                            > *{
+                                display: block;
+                                border-top: solid white 2px;
+                                @include hw(15px,15px);
+                            }
+                        }
+                        .left{
+                            > *{
+                                border-left:white solid 2px;
+                                transform: rotate(-45deg);
+                            }
+                        }
+                        .right{
+                            > *{
+                                border-right:white solid 2px;
+                                transform: rotate(45deg);
+                            }
+                        }
+                    }
+                }
+            }
+            .weekly{
+                left:40%;
+                top:50%;
+                @include hw(50%, 60%);
+                .wrap{
+                    align-items: flex-start;
+                    h3{
+                        width:100%;
+                        @include font(oswald, 100, 1.75em);
+                    }
+                    .weekly-wrap{
+                        @include hw(90%,100%);
+                        overflow: hidden;
+                        .weekly-rail{
+                            height: 100%;
+                            width:200%;
+                            @extend .con;
+                            .day{
+                                @include hw(100%,10%);
+                                @extend .flex;
+                                float: left;
+                                > *{width:100%;text-align: center;}
+                                .time{
+                                    @include font(open sans, 100, 1.25em);
+                                }
+                                .graphic{
+                                    @extend .centerBg;
+                                    height:25%;
+                                    background-size: 40%;
+                                }
+                                .temp{
+                                    @include font(work sans, 100, 3em);
+                                    margin: 20px 0 40px;
+                                }
+                                .perc{
+                                    @include font(open sans, 100, 1.25em);
+                                    span{
+                                        display: inline-block;
+                                        @include centerBg(url(../assets/images/drip.png));
+                                        @include hw(20px, 20px);
+                                        background-size: 75%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .weekly-arrows{
+                        @include hw(30px,100%);
+                        @extend .con, .flex;
+                        justify-content: space-between;
+                        > *{
+                            @include hw(100%,50%);
+                            @extend .con, .flex;
+                            cursor: pointer;
+                            > *{
+                                display: block;
+                                border-top: solid white 2px;
+                                @include hw(15px,15px);
+                            }
+                        }
+                        .left{
+                            > *{
+                                border-left:white solid 2px;
+                                transform: rotate(-45deg);
+                            }
+                        }
+                        .right{
+                            > *{
+                                border-right:white solid 2px;
+                                transform: rotate(45deg);
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
